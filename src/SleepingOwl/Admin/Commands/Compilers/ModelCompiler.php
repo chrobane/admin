@@ -116,7 +116,7 @@ class ModelCompiler
 		]);
 		if ($this->hasRelation($column, '\Illuminate\Database\Eloquent\Relations\HasMany'))
 		{
-			$appendTemplate = ";//->append(Column::filter(':foreignKey')->model(:foreignModel::class));";
+			$appendTemplate = ";//->append(Column::filter(':foreignKey')->model(':foreignModel'));";
 			$relation = $this->getRelation($column);
 			list($foreignModel, $foreignKey) = explode('.', $relation->getForeignKey());
 			$foreignModel = Str::studly(Str::singular($foreignModel));
@@ -295,7 +295,7 @@ class ModelCompiler
 	 */
 	protected function appendFilter($foreignKey, $foreignModel)
 	{
-		$filterTemplate = "ModelItem::filter(':foreignKey')->title()->from(:foreignModel::class);";
+		$filterTemplate = "ModelItem::filter(':foreignKey')->title()->from(':foreignModel');";
 		$this->filters[] = strtr($filterTemplate, [
 			':foreignKey'   => $foreignKey,
 			':foreignModel' => $foreignModel
@@ -365,7 +365,7 @@ class ModelCompiler
 				if ($foreignKey = $this->getForeignKey($name))
 				{
 					$foreignModel = Str::studly(Str::singular($foreignKey->getForeignTableName()));
-					$result .= "->list($foreignModel::class)";
+					$result .= "->list('$foreignModel')";
 				}
 				if ($this->isEnumColumn($name))
 				{
