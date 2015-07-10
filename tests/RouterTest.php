@@ -48,7 +48,7 @@ class RouterTest extends \PHPUnit_Framework_TestCase
 	/** @test */
 	public function it_initializes()
 	{
-		$this->assertInstanceOf('SleepingOwl\Admin\Router', $this->instance);
+		$this->assertInstanceOf('\SleepingOwl\Admin\Router', $this->instance);
 	}
 
 	/** @test */
@@ -243,7 +243,7 @@ class RouterTest extends \PHPUnit_Framework_TestCase
 	/** @test */
 	public function it_throws_an_exception_when_unknown_method_called()
 	{
-		$this->setExpectedException(\SleepingOwl\Admin\Exceptions\MethodNotFoundException::class);
+		$this->setExpectedException('\SleepingOwl\Admin\Exceptions\MethodNotFoundException');
 
 		$route = $this->instance->unknownMethod();
 		$this->assertEquals('some-route', $route);

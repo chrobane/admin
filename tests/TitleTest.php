@@ -46,7 +46,7 @@ class TitleTest extends \PHPUnit_Framework_TestCase
 	public function it_can_use_model_to_load_title_from()
 	{
 		$title = new Title;
-		$title->from(TitleTestModel::class);
+		$title->from('TitleTestModel');
 		$this->assertEquals('title from model', $title->get(1));
 	}
 
@@ -54,7 +54,7 @@ class TitleTest extends \PHPUnit_Framework_TestCase
 	public function it_can_use_model_custom_attribute_to_load_title_from()
 	{
 		$title = new Title;
-		$title->from(TitleTestModel::class, 'name');
+		$title->from('TitleTestModel', 'name');
 		$this->assertEquals('title from model custom field', $title->get(1));
 	}
 
@@ -71,7 +71,7 @@ class TitleTest extends \PHPUnit_Framework_TestCase
 	{
 		$title = new Title;
 		$this->setExpectedException('\SleepingOwl\Admin\Exceptions\ModelAttributeNotFoundException');
-		$title->from(TitleTestModel::class, 'unsetAttribute');
+		$title->from('TitleTestModel', 'unsetAttribute');
 		$title->get(1);
 	}
 
@@ -80,7 +80,7 @@ class TitleTest extends \PHPUnit_Framework_TestCase
 	{
 		$title = new Title;
 		$this->setExpectedException('\Exception');
-		$title->from(TitleTestModel::class, 'title');
+		$title->from('TitleTestModel', 'title');
 		$title->get(10);
 	}
 

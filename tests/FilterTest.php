@@ -80,7 +80,7 @@ class FilterTest extends \PHPUnit_Framework_TestCase
 	/** @test */
 	public function it_throws_an_exception_when_unknown_method_called()
 	{
-		$this->setExpectedException(\SleepingOwl\Admin\Exceptions\MethodNotFoundException::class);
+		$this->setExpectedException('\SleepingOwl\Admin\Exceptions\MethodNotFoundException');
 
 		$filter = new Filter('field');
 		$filter->test();
@@ -89,7 +89,7 @@ class FilterTest extends \PHPUnit_Framework_TestCase
 	/** @test */
 	public function it_adds_myself_to_current_modelitem_on_create()
 	{
-		$modelItem = Mockery::mock('SleepingOwl\Admin\Models\ModelItem');
+		$modelItem = Mockery::mock('\SleepingOwl\Admin\Models\ModelItem');
 		$modelItem->shouldReceive('addFilter')->once();
 		ModelItem::$current = $modelItem;
 		$filter = new Filter('field');
